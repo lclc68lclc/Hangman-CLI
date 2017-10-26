@@ -8,3 +8,17 @@ var wrongLetters = [];
 var winCount = 0;
 var lossCount = 0;
 var guessLeft = 9;
+
+var askQuestion = function() {
+    if (guessLeft < 9) {
+        inquirer.prompt([{
+            name: "guess",
+            message: "Guess a letter"
+        }, ]).then(function(answer) {
+                var newWord = new Word(
+                    answer.word);
+
+            )
+        })
+}
+}

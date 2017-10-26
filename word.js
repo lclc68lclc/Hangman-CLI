@@ -4,50 +4,37 @@ var letter = require('./letter.js');
 function Word(word) {
     this.word = word;
     this.blanksAndSuccesses = [];
-    this.lettersInWord = [];
     this.splitWord = word.split('');
-    this.wrongLetters = [];
     this.isLetterinWord = false;
     this.blanks = function() {
         for (var i = 0; i < this.word.length; i++) {
-            this.blanksAndSuccesses.push("_");
+            this.blanksAndSuccesses.push(new letter(this.word[i]));
         }
         console.log(this.blanksAndSuccesses.join(" "));
     };
-}
-
-var newWord = new Word("funny");
-
-newWord.blanks();
-console.log(newWord.isLetterinWord);
-
-Word.prototype.checkGuesses = function(x) {
-    for (var i = 0; i < this.word.length; i++) {
-        if (this.word[i] == x) {
-            this.isLetterinWord = true;
-            console.log(this.isLetterinWord);
-        }
-    }
-
-    if (this.isLetterinWord) {
-        for (var j = 0; j < this.word.length; j++) {
-            if (this.word[i] == x) {
-                this.blanksAndSuccesses[i] = x;
-                console.log(this.blanksAndSuccesses);
+    this.getWord = function() {
+        this.getW = this.blanksAndSuccesses.every(function(lettWord) {
+            return lettWord.appear;
+        });
+        return this.getW;
+    };
+    this.checkGuesses = function(x) {
+        var toGet = 0;
+        for (var i = 0; i < this.blanksAndSuccesses.length; i++) {
+            if (this.blanksAndSuccesses[i].letter == x) {
+                this.isLetterinWord = true;
+                toGet++;
             }
         }
-    } else {
-        console.log(x + " is not in the word");
-        this.wrongLetters.push(x);
-    }
+        return toGet;
+    };
+    this.checkLetters = function() {
+        var string = '';
+        for (var j = 0; j < this.blanksAndSuccesses.length; j++) {
+            string += this.blanksAndSuccesses[i].showLetter();
+        }
+        return string;
+    };
+}
 
-    console.log(this.wrongLetters);
-
-
-};
-
-
-
-newWord.checkGuesses("u");
-
-//module.exports = Word;
+module.exports = Word;
