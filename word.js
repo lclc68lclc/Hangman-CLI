@@ -4,7 +4,6 @@ var letter = require('./letter.js');
 function Word(word) {
     this.word = word;
     this.blanksAndSuccesses = [];
-    this.splitWord = word.split('');
     this.isLetterinWord = false;
     this.blanks = function() {
         for (var i = 0; i < this.word.length; i++) {

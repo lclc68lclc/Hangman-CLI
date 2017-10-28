@@ -1,24 +1,36 @@
-var Letter = require("./letter");
 var Word = require("./word");
 var inquirer = require("inquirer");
 
 var wordOptions = ["foot", "ankle", "knee", "elbow", "thigh", "hand", "calf"];
-var selectedWord = words[Math.floor(Math.random() * words.length)];
-var wrongLetters = [];
-var winCount = 0;
-var lossCount = 0;
+var selectedWord = null;
 var guessLeft = 9;
 
+function resetGuesses() {
+    guessLeft = 9;
+}
+
+var startGame = function(word) {
+    resetGuesses();
+    this.random = Math.floor(Math.random() * wordOptions.length);
+    this.selectedWord = new Word(random);
+    this.selectedWord.getWord();
+    askQuestion();
+
+};
+
 var askQuestion = function() {
-    if (guessLeft < 9) {
+
+    if (guessLeft < 6) {
         inquirer.prompt([{
             name: "guess",
             message: "Guess a letter"
         }, ]).then(function(answer) {
-                var newWord = new Word(
-                    answer.word);
+            console.log("You guessed" + answer);
+            var guessed = this.selectedWord.checkLetters(answer);
+        });
+    }
+};
 
-            )
-        })
-}
-}
+
+
+startGame();
