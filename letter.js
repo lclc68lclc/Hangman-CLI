@@ -1,11 +1,11 @@
 function Letter(x) {
     this.letter = x;
     this.appear = false;
-    this.showLetter = function() {
+    this.showLetter = function(x) {
         if (this.appear == true) {
-            return "_";
-        } else {
             return this.letter;
+        } else {
+            return '_';
         }
     };
 }

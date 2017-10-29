@@ -5,12 +5,6 @@ function Word(word) {
     this.word = word;
     this.blanksAndSuccesses = [];
     this.isLetterinWord = false;
-    this.blanks = function() {
-        for (var i = 0; i < this.word.length; i++) {
-            this.blanksAndSuccesses.push(new letter(this.word[i]));
-        }
-        console.log(this.blanksAndSuccesses.join(" "));
-    };
     this.getWord = function() {
         this.getW = this.blanksAndSuccesses.every(function(lettWord) {
             return lettWord.appear;
@@ -29,8 +23,11 @@ function Word(word) {
     };
     this.checkLetters = function() {
         var string = '';
+        for (var i = 0; i < this.word.length; i++) {
+            this.blanksAndSuccesses.push(new letter(this.word[i]));
+        }
         for (var j = 0; j < this.blanksAndSuccesses.length; j++) {
-            string += this.blanksAndSuccesses[i].showLetter();
+            string += this.blanksAndSuccesses[j].showLetter();
         }
         return string;
     };
